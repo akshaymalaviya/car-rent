@@ -11,7 +11,10 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=RentACarSystem;Trusted_Connection=true");
+            //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=CarSystem;Trusted_Connection=true");
+            //optionsBuilder.UseSqlServer(@"Server=LAPTOP-GR0LVOCR;Database=CarSystem;Trusted_Connection=true");
+            //optionsBuilder.UseSqlServer(@"workstation id=CarSystem.mssql.somee.com;packet size=4096;user id=divyeshkanpariya_SQLLogin_1;pwd=nok1mjln2l;data source=CarSystem.mssql.somee.com;persist security info=False;initial catalog=CarSystem;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@"Server=sql.bsite.net\MSSQL2016;Database=carrent_;User Id=carrent_;password=Divyesh@3747;TrustServerCertificate=True");
         }
 
         public DbSet<Car> Cars { get; set; }

@@ -6,6 +6,7 @@ using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +31,6 @@ namespace WebAPI.Controllers
         public IActionResult Add(Car car)
         {
             var result = _carService.Add(car);
-            
             if (result.Success)
             {
                 return Ok(result);

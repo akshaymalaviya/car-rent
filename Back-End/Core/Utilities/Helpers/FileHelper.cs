@@ -20,6 +20,10 @@ namespace Core.Utilities.Helpers
             FileInfo fileInfo = new FileInfo(file.FileName);
 
             string path = Path.Combine(UploadImagePath);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
             string fileExtension = fileInfo.Extension;
             string uniqueFilename = Guid.NewGuid().ToString() + fileExtension;
             string result = $@"{path}\{uniqueFilename}";

@@ -32,11 +32,12 @@ namespace Business.Concrete
         //[SecuredOperation("admin,car.add")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
-        public IResult Add(Car car)
+        public IDataResult<Car> Add(Car car)
         {
             _carDal.Add(car);
+            int id = car.CarId;
 
-            return new SuccessResult(Messages.CarAdded);
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id), Messages.CarAdded);
         }
 
 

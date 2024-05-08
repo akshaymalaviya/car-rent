@@ -35,15 +35,16 @@ namespace Business.Concrete
         //[SecuredOperation("admin,carimage.add")]
         [ValidationAspect(typeof(CarImageValidator))]
         [CacheRemoveAspect("ICarImageService.Get")]
-        public IResult Add(CarImage carImage, IFormFile file)
+        public IResult Add(int carId, IFormFile file)
         {
-            var result = BusinessRules.Run(CheckCarImageCount(carImage.CarId));
+            CarImage carImage = new CarImage();
+            var result = BusinessRules.Run(CheckCarImageCount(carId));
             
             if (result != null)
             {
                 return result;
             }
-
+            carImage.CarId = carId;
             carImage.ImageDate = DateTime.Now;
             carImage.ImagePath = FileHelper.AddFile(file);
             

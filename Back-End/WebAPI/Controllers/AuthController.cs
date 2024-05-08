@@ -30,6 +30,7 @@ namespace WebAPI.Controllers
             }
 
             var result = _authService.CreateAccessToken(userToLogin.Data);
+            result.Data.Id= userToLogin.Data.Id;
 
             if (result.Success)
             {

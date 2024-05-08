@@ -17,5 +17,6 @@ namespace Entities.DTOs
         public string Description { get; set; }
         public int MinFindeksScore { get; set; }
         public List<CarImage> ImagePaths { get; set; }
+        public byte[] ImageBytes { get; set; }
     }
 }

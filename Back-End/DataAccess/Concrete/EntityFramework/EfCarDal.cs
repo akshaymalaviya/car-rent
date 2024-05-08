@@ -4,6 +4,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -39,8 +40,25 @@ namespace DataAccess.Concrete.EntityFramework
                                                    ImageDate = img.ImageDate
                                                }).ToList()
             };
+            var CarList = new List<CarDetailDto>();
+            foreach(var car in result)
+            {
+                    CarDetailDto newCar = new CarDetailDto();
+                    newCar = car;
+                if (car.ImagePaths != null && car.ImagePaths.Count > 0)
+                {
+                    if (System.IO.File.Exists(car.ImagePaths.FirstOrDefault().ImagePath))
+                    {
+
+                        byte[] zipBytes = System.IO.File.ReadAllBytes(car.ImagePaths.FirstOrDefault().ImagePath);
+                        newCar.ImageBytes = zipBytes;
+                    }
+                }
+                CarList.Add(newCar);
                 
-                return result.ToList();
+            }
+                
+            return CarList;
             }
         }
     }
