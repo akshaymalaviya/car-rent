@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -66,7 +67,7 @@ namespace WebAPI.Controllers
             return BadRequest(registerResult);
         }
 
-
+        [Authorize]
         [HttpPost("changepassword")]
         public IActionResult ChangePassword(UserForChangingPasswordDto userForChangingPasswordDto)
         {
